@@ -19,10 +19,10 @@ public class CreditCard {
     public String transaction(double amount){
         
         
-
+        lastUseDateTime = LocalDateTime.now();
         if(lastUseDateTime.isAfter(endTime)){
             usedCredit = 0;
-            endTime = startTime.plusHours(24);
+            endTime = endTime.plusHours(24);
 
         }
 
@@ -35,7 +35,6 @@ public class CreditCard {
         if(amount + usedCredit>dailyLimit){
             throw new ArithmeticException("Transaction exceeds daily limit");
         }
-        lastUseDateTime = LocalDateTime.now();
         usedCredit += amount;
         return "Transaction credit use: " +amount;
     }
@@ -47,7 +46,7 @@ public class CreditCard {
         if(amount + usedCredit>maxLimit){
             throw new ArithmeticException("Transaction exceeds maximum limit");
         }
-        lastUseDateTime = LocalDateTime.now();
+        
         usedCredit +=amount;
         return "Bill paid: " +Double.toString(amount);
     }
