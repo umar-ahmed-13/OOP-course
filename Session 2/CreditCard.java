@@ -1,27 +1,31 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 public class CreditCard {
     double maxLimit = 500000;
     double dailyLimit = 100000;
     double perTransactionLimit = 20000;
     double usedCredit = 0;
-    LocalDateTime lastUseDateTime ;
-    LocalDateTime startTime = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0);
-    // LocalDateTime compare = 
-    // LocalDateTime myDateObj = LocalDateTime.now();
-    // DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    // String formattedDate = myDateObj.format(myFormatObj);
-
-    
-    public static void main(String[] args) {
+    LocalDateTime startTime = LocalDate.now().atStartOfDay();
+    LocalDateTime endTime = startTime.plusHours(24);
+    LocalDateTime lastUseDateTime;
  
+    public static void main(String[] args) {
+        // LocalDateTime startTime = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0);
+        
+        
     }
     public String transaction(double amount){
-        if(lastUseDateTime.isAfter(startTime)){
+        
+        
+
+        if(lastUseDateTime.isAfter(endTime)){
             usedCredit = 0;
+            endTime = startTime.plusHours(24);
 
         }
+
         if ( amount> perTransactionLimit ){
             throw new ArithmeticException("Exceeded transaction limit");
         }
